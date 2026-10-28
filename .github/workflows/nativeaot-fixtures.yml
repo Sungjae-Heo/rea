@@ -10,7 +10,7 @@ permissions:
 jobs:
   windows-fixture:
     name: Build Windows x64 NativeAOT fixture
-    # .NET 8.0.22's bundled linker discovery supports VS 2019/2022.
+    # .NET 8.0.33 includes the Brotli decoder security fix and supports VS 2019/2022.
     runs-on: windows-2022
     # Two bounded restore attempts and one compile can each take five minutes.
     timeout-minutes: 20
@@ -25,7 +25,7 @@ jobs:
           node-version-file: .nvmrc
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
-          dotnet-version: "8.0.416"
+          dotnet-version: "8.0.427"
       - name: Build benign fixture and independent byte oracle
         run: node scripts/generate-nativeaot-fixtures.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
